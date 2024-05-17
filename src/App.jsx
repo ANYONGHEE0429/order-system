@@ -1,34 +1,24 @@
 import React, { useState } from "react";
+import ImageGrid from "./components/ImageGrid";
+import SelectedImage from "./components/SelectedImage";
 
 const App = () => {
   const [selectedImage, setSelectedImage] = useState(null);
-  const images = [
-    require("./assets/images/ice1.jpeg"),
-    require("./assets/images/ice2.jpeg"),
-    require("./assets/images/ice3.jpeg"),
-    require("./assets/images/ice4.jpeg"),
-  ];
-
-  //   if (images.length <= 12) {
-  //     images.push({ name: null });
-  //   }
-  while (images.length < 12) {
-    images.push({ name: null });
-  }
+  const [imageName, setImageName] = useState(null);
+  const handleImageClick = (image, name) => {
+    setSelectedImage(image);
+    setImageName(name);
+  };
+  console.log(imageName);
   return (
     <div className="app">
       <h2>귀염 뽀짝</h2>
       <div className="container">
-        <div className="image-grid">
-          {images.map((image, index) => (
-            <img key={index} src={image} alt={`Image ${index}`} />
-          ))}
-        </div>
-        );
-        <div className="selected-image">
-          {selectedImage && <img src={selectedImage} alt="Selected" />}
-        </div>
+        <ImageGrid onImageClick={handleImageClick} />
+
+        <SelectedImage selectedImage={selectedImage} />
       </div>
+      {imageName && <h1 className="image-name">{imageName}</h1>}
     </div>
   );
 };
