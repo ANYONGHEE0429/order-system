@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import selectedImage from "./SelectedImage";
 
 const ImageGrid = ({ onImageClick }) => {
   const images = [
