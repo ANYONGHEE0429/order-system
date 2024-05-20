@@ -44,7 +44,7 @@ const Ordering = () => {
          <h2>귀염 뽀짝</h2>
          <div className="container">
             <ImageGrid images={firebaseImages} onImageClick={handleImageClick} />
-            <SelectedImage selectedImage={selectedImage} />
+            <SelectedImage selectedImage={selectedImage} onImageClick={handleImageClick} />
          </div>
       </div>
    );
