@@ -4,10 +4,10 @@ import SelectedImage from './SelectedImage';
 import { Link } from 'react-router-dom';
 import { db } from '../firebaseConfig';
 import { onValue, ref } from 'firebase/database';
+// import { ref } from 'firebase/storage';
 
 const Ordering = () => {
-   const [selectedImage, setSelectedImage] = useState(null);
-   const [imageName, setImageName] = useState(null);
+   const [selectedImage, setSelectedImage] = useState([]);
    const [firebaseImages, setFirebaseImages] = useState([]);
 
    useEffect(() => {
@@ -21,9 +21,19 @@ const Ordering = () => {
       });
    }, []);
 
-   const handleImageClick = (image, name) => {
-      setSelectedImage(image);
-      setImageName(name);
+   const handleImageClick = (image, name, price) => {
+      setSelectedImage(prev => {
+         // 이미지가 추가됐는지 확인
+         const isSelected = prev.find(img => img.url === image);
+         // 이미지가 선택 되지 않았을 경우
+         if (!isSelected) {
+            // 선택한 이미지를 리스트에 추가
+            return [...prev, { url: image, name, price }];
+         } else {
+            // 선택한 이미지를 리스트에서 제거
+            return prev.filter(img => img.url !== image);
+         }
+      });
    };
 
    return (
@@ -36,7 +46,6 @@ const Ordering = () => {
             <ImageGrid images={firebaseImages} onImageClick={handleImageClick} />
             <SelectedImage selectedImage={selectedImage} />
          </div>
-         {imageName && <p className="image-name">{imageName}</p>}
       </div>
    );
 };
