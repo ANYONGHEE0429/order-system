@@ -15,7 +15,7 @@ const ImageGrid = ({ onImageClick }) => {
             <div key={index} class="image-list" onClick={() => onImageClick(image.url, image.name, image.price)}>
                <img src={image.url} alt={`Image ${index + 1}`} />
                <p>{image.name}</p>
-               <p>{image.price}</p>
+               <p>{image.price}원</p>
             </div>
          ))}
       </div>

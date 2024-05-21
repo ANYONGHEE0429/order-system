@@ -13,18 +13,14 @@ const SelectedImage = ({ selectedImage, onImageClick }) => {
          return totalCount < 0 ? { ...prev } : { ...prev, [url]: totalCount };
       });
    };
-   const handleImageClick = () => {};
+
    return (
       <div className="selected-image">
          {selectedImage.map((image, index) => (
-            <div
-               key={index}
-               className="selected-image"
-               onClick={() => onImageClick(image.url, image.name, image.price)}>
-               {selectedImage && <img src={image.url} alt={image.name} />}
-
+            <div key={index} className="selected-image">
+               <img src={image.url} alt={image.name} onClick={() => onImageClick(image.url, image.name, image.price)} />
                <p>{image.name}</p>
-               <p>{image.price}</p>
+               <p>{image.price}원</p>
                <div className="image-count">
                   <button onClick={() => handleCountChange(image.url, -1)}>-</button>
                   {count[image.url] || 0}
