@@ -1,0 +1,9 @@
+.image-grid {
+   display: flex;
+   flex-wrap: wrap;
+}
+
+.image-list {
+   width: 200px;
+   height: 200px;
+}
