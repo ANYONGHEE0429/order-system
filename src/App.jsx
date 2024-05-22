@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Routes } from 'react-router-dom';
-import Ordering from './components/Ordering';
-import Settings from './components/Settings';
+import Ordering from './pages/Ordering';
+import Settings from './pages/Settings';
 
 const App = () => {
    return (

@@ -1,0 +1,12 @@
+.selected-images {
+   display: flex;
+   flex-wrap: none;
+}
+.selected-image {
+   margin: 0 20px;
+}
+
+.selected-image img {
+   width: 200px;
+   height: 200px;
+}

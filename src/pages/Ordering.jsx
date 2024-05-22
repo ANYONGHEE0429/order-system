@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import ImageGrid from './ImageGrid';
-import SelectedImage from './SelectedImage';
+import ImageGrid from '../components/ImageGrid';
+import SelectedImage from '../components/SelectedImage';
 import { Link } from 'react-router-dom';
 import { db } from '../firebaseConfig';
 import { onValue, ref } from 'firebase/database';
