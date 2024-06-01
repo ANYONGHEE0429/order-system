@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './SelectedImage.css';
 
 const SelectedImage = ({ selectedImage, onImageClick }) => {
@@ -20,6 +20,7 @@ const SelectedImage = ({ selectedImage, onImageClick }) => {
    const handleImageClick = (image, name, price) => {
       onImageClick(image, name, price);
       setCount(prev => {
+         // 클릭한 이미지가 없는 상태
          if (!(image in prev)) {
             return { ...prev, [image]: 1 };
          }
@@ -27,6 +28,21 @@ const SelectedImage = ({ selectedImage, onImageClick }) => {
       });
    };
 
+   const calTotalPrice = () => {
+      let totalPrice = 0;
+      if (Object.keys(count).length === 0) {
+         alert(Object);
+         return 0;
+      }
+      return totalPrice;
+   };
+
+   useEffect(() => {
+      if (Object.keys(count).length === 0) {
+         alert(Object.keys(count).length);
+         return 0;
+      }
+   }, [count]);
    return (
       <div className="selected-images">
          {selectedImage.map((image, index) => (
@@ -45,6 +61,7 @@ const SelectedImage = ({ selectedImage, onImageClick }) => {
                </div>
             </div>
          ))}
+         <button className="total-count">총 : {calTotalPrice}원</button>
       </div>
    );
 };
