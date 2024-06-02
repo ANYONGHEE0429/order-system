@@ -30,21 +30,24 @@ const SelectedImage = ({ selectedImage, onImageClick }) => {
 
    const calTotalPrice = () => {
       let totalPrice = 0;
-      if (Object.keys(count).length === 0) {
-         alert(Object);
-         return 0;
+      for (const url in count) {
+         const selectedImg = selectedImage.find(img => img.url === url);
+         if (selectedImg) {
+            totalPrice = totalPrice + parseInt(selectedImg.price) * count[url];
+         }
       }
       return totalPrice;
    };
 
-   useEffect(() => {
-      if (Object.keys(count).length === 0) {
-         alert(Object.keys(count).length);
-         return 0;
-      }
-   }, [count]);
+   // useEffect(() => {
+   //    if (Object.keys(count).length === 0) {
+   //       alert(Object.keys(count).length);
+   //       return 0;
+   //    }
+   // }, [count]);
    return (
       <div className="selected-images">
+         <div className="total-count">합걔 : {calTotalPrice()}원</div>
          {selectedImage.map((image, index) => (
             <div key={index} className="selected-image">
                <img
@@ -61,7 +64,6 @@ const SelectedImage = ({ selectedImage, onImageClick }) => {
                </div>
             </div>
          ))}
-         <button className="total-count">총 : {calTotalPrice}원</button>
       </div>
    );
 };
